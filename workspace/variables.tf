@@ -32,7 +32,11 @@ variable "instance_type" {
 }
 
 // Repo
-variable "repository_id" {
+variable "repository_connector" {
+  type = string
+}
+
+variable "repository_name" {
   type = string
 }
 
