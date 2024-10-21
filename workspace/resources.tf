@@ -1,17 +1,3 @@
-// Define the resources to create
-// Provisions the following into Harness: 
-//    Code Repo, IaCM Workspace
-resource "harness_platform_repo" "demo" {
-  identifier     = var.new_repo_id
-  org_id         = var.org_id
-  project_id     = var.project_id
-  default_branch = "main"
-  source {
-    repo = var.github_repo_to_clone
-    type = "github"
-  }
-}
-
 resource "harness_platform_workspace" "demo" {
   name                    = var.workspace_name
   identifier              = var.workspace_name
