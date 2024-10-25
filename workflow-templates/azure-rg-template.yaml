@@ -52,7 +52,7 @@ spec:
           workspace_repo: "opentofuazure"
           rgName: ${{ parameters.project_name }}
           location: ${{ parameters.location }}
-          tagsDictionary: "{\"CostCenter\":\"Project LEAP 5001\",\"Department\":\"${{ parameters.location }}\",\"EnvType\":\"Non-Production\",\"LegalSubEntity\":\"Walgreen Co\",\"SenType\":\"Not Applicable\",\"Sensitivity\":\"Non-Sensitive\",\"SubDivision\":\"Global Cloud \& Platform Service\"}"
+          tagsDictionary: "{\"CostCenter\":\"Project LEAP 5001\",\"Department\":\"${{ parameters.location }}\",\"EnvType\":\"Non-Production\",\"LegalSubEntity\":\"Walgreen Co\",\"SenType\":\"Not Applicable\",\"Sensitivity\":\"Non-Sensitive\",\"SubDivision\":\"Global Cloud & Platform Service\"}"
         apikey: ${{ parameters.token }}
 
   output:
