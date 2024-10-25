@@ -1,0 +1,69 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: Azure-Resource-Group
+  title: Create a new Azure Resource Group
+  description: Create a new Azure Resource Group using Harness IaCM
+  tags:
+    - azure
+    - opentofu
+spec:
+  owner: owner@company.com
+  type: service
+  parameters:
+    - title: Service Details
+      required:
+        - workspace_name
+        - workspace_repo
+        - rgName
+        - location
+        - tags
+      properties:
+        workspace_name:
+          title: Name of your service
+          type: string
+          description: Your repo will be created with this name
+        workspace_repo:
+          title: Workspace Repository
+          type: string
+          description: The repository with the OpenTofu module
+        repository_type:
+          type: string
+          title: Repository Type
+          enum:
+            - public
+            - private
+          default: public
+        owner:
+          title: Choose an Owner for the Service
+          type: string
+          ui:field: OwnerPicker
+          ui:options:
+            allowedKinds:
+              - Group
+        # This field is hidden but needed to authenticate the request to trigger the pipeline
+        token:
+          title: Harness Token
+          type: string
+          ui:widget: password
+          ui:field: HarnessAuthToken
+  steps:
+    - id: trigger
+      name: Bootstrapping your new service
+      action: trigger:harness-custom-pipeline
+      input:
+        url: "YOUR PIPELINE URL HERE"
+        inputset:
+          organization: ${{ parameters.organization_name }}
+          project_name: ${{ parameters.project_name }}
+          public_cookiecutter_template_url: ${{ parameters.public_template_url }}
+          repository_type: ${{ parameters.repository_type }}
+          repository_description: ${{ parameters.repository_description }}
+          repository_default_branch: ${{ parameters.repository_default_branch }}
+          direct_push_branch: ${{ parameters.direct_push_branch }}
+        apikey: ${{ parameters.token }}
+
+  output:
+    links:
+      - title: Pipeline Details
+        url: ${{ steps.trigger.output.PipelineUrl }}
