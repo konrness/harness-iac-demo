@@ -17,7 +17,6 @@ spec:
         - workspace_repo
         - rgName
         - location
-        - tags
       properties:
         workspace_name:
           title: Name of your workspace
