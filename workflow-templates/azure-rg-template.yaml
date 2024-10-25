@@ -20,13 +20,17 @@ spec:
         - tags
       properties:
         workspace_name:
-          title: Name of your service
+          title: Name of your workspace
           type: string
-          description: Your repo will be created with this name
+          description: Your workspace will be created with this name
         workspace_repo:
           title: Workspace Repository
           type: string
           description: The repository with the OpenTofu module
+        rgName:
+          title: Resource Group Name
+          type: string
+          description: The name of the Azure Resource Group
         location:
           type: string
           title: Region
